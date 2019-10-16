@@ -48,13 +48,8 @@ def model_fn(model_dir):
 
 def input_fn(serialized_input_data, content_type):
     print('Deserializing the input data.')
-    #os.environ('LANG') = 'en_US.UTF-8'
-    #os.environ('LANGUAGE') = 'en_US:en'
-    #os.environ('LC_ALL') = 'en_US.UTF-8'
     if content_type == 'text/plain':
-        print(serialized_input_data)
-        data = serialized_input_data.decode('utf-8')
-        print(data)
+        data = serialized_input_data.decode(encoding='utf8', errors='ignore')
         return data
     raise Exception('Requested unsupported ContentType in content_type: ' + content_type)
 
